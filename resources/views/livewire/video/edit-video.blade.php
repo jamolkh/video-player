@@ -3,7 +3,6 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-
                     <div class="col-md-12">
                         <img src="{{asset($this->video->thumbnail)}}" class="img-thumbnail" alt="">
 
