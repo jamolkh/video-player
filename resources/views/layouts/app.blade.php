@@ -23,7 +23,9 @@
 
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
+    <style>
+        [x-cloak] { display: none; }
+      </style>
 </head>
 <body>
     <div id="app">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Video;
 
+use App\Jobs\ConvertVideoForStreaming;
+use App\Jobs\CreateThumbnailFromVideo;
 use Livewire\Component;
 use App\Models\Channel;
 use App\Models\Video;
@@ -15,6 +17,10 @@ class CreateVideo extends Component
     public Channel $channel;
     public Video $video;
     public $videoFile;
+
+    protected $rules = [
+        'videoFile' => 'required|mimes:mp4|max:1228800'
+    ];
 
     public function mount(Channel $channel)
     {
@@ -31,12 +37,29 @@ class CreateVideo extends Component
 
     }
 
-    public function upload()
+    public function fileUpload()
     {
-        $this->validate([
-            'videoFile' => 'required|mimes:mp4|max:1024000',
+        $this->validate();
+
+        $path = $this->videoFile->store('videos-temp');
 
 
+
+        $this->video = $this->channel->videos()->create([
+            'title' => 'untitled',
+            'description' => 'none',
+            'visibility' => 'private',
+            'uid' => uniqid(true),
+            'path' => explode('/', $path)[1]
+        ]);
+
+        CreateThumbnailFromVideo::dispatch($this->video);
+
+        ConvertVideoForStreaming::dispatch($this->video);
+
+        return redirect()->route('video.edit', [
+            'channel' => $this->channel,
+            'video' => $this->video
         ]);
     }
 }

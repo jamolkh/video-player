@@ -20,4 +20,13 @@ class Video extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
+    public function getThumbnailAttribute()
+    {
+        if($this->thumbnail_image)
+        {
+            return '/videos/' . $this->uid . '/' . $this->thumbnail_image;
+        }
+        return '/videos/' . 'default.jpg';
+    }
 }
