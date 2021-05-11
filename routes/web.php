@@ -3,6 +3,7 @@
 use App\Http\Livewire\Video\AllVideos;
 use App\Http\Livewire\Video\CreateVideo;
 use App\Http\Livewire\Video\EditVideo;
+use App\Http\Livewire\WatchVideo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,5 @@ Route::middleware('auth')->group(function (){
 
 
 });
+
+Route::get('/watch/{video}', WatchVideo::class)->name('video.watch');

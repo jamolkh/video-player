@@ -1,4 +1,4 @@
-<div>
+<div wire:poll>
 
     @if($channel->image)
         <img src="{{asset('images' . '/' . $channel->image)}}" alt="">

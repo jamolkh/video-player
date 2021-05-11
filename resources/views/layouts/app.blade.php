@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     @livewireStyles
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <style>
         [x-cloak] { display: none; }
@@ -40,10 +41,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
+
+
                     <ul class="navbar-nav mr-auto">
+                        @if (Auth::user())
+
                         <li class="nav-item">
                             <a href="{{route('video.all', ['channel'=>Auth::user()->channel])}}" class="nav-link">All videos</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -102,6 +109,6 @@
         </main>
     </div>
     @livewireScripts
-
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
 </body>
 </html>

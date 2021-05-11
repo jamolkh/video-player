@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="container">
 
         <div class="row justify-content-center">
@@ -17,10 +17,13 @@
                                 <div class="col-md-2">
                                     {{$video->visibility}}
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="{{route('video.edit', ['channel'=>auth()->user()->channel, 'video'=>$video])}}" class="btn btn-light btn-sm">Edit</a>
-                                    <button class="btn btn-danger btn-sm">Edit</button>
-                                </div>
+                                @if (auth()->user()->owns($video))
+                                    <div class="col-md-2">
+                                        <a href="{{route('video.edit', ['channel'=>auth()->user()->channel, 'video'=>$video])}}" class="btn btn-light btn-sm">Edit</a>
+                                        <a wire:click.prevent = "delete(`{{$video->uid}}`)"
+                                        class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
