@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     @livewireStyles
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    @stack('custom-css')
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <style>
         [x-cloak] { display: none; }
@@ -109,6 +109,6 @@
         </main>
     </div>
     @livewireScripts
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    @stack('scripts')
 </body>
 </html>
