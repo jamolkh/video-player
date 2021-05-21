@@ -21,6 +21,7 @@ class Video extends Model
         return $this->belongsTo(Channel::class);
     }
 
+
     public function getThumbnailAttribute()
     {
         if($this->thumbnail_image)
@@ -28,5 +29,22 @@ class Video extends Model
             return '/videos/' . $this->uid . '/' . $this->thumbnail_image;
         }
         return '/videos/' . 'default.jpg';
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Likes::class);
+    }
+    public function dislikes()
+    {
+        return $this->hasMany(Dislikes::class);
+    }
+    public function liked()
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
+    }
+    public function disliked()
+    {
+        return $this->dislikes()->where('user_id', auth()->id())->exists();
     }
 }

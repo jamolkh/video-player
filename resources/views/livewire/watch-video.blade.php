@@ -4,8 +4,8 @@
     @endpush
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <video id="yt-video" controls preload="auto" wire:ignore
+            <div class="col-md-12 p-0"  wire:ignore>
+                <video id="yt-video" controls preload="auto"
                 class="video-js vjs-styles=defaults vjs-big-play-centered vjs-fill"
                 data-setup="{}"  style="width=100%;height:500px; position:relative">
                     <source src="{{asset('videos/'. $video->uid . '/' . $video->processed_file)}}"
@@ -16,6 +16,28 @@
                             <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                         </p>
                 </video>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="">
+                            <h3 class="mt-4">{{$video->title}}</h3>
+                            <p style="color:#909090">{{$video->views}} views . {{$video->created_at->diffForHumans()}} </p>
+                        </div>
+                        <div>
+
+                            <livewire:video.voting :video="$video" />
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <livewire:channel.channel-info :channel="$video->channel" />
             </div>
         </div>
     </div>

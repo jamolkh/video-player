@@ -4,6 +4,7 @@ use App\Http\Livewire\Video\AllVideos;
 use App\Http\Livewire\Video\CreateVideo;
 use App\Http\Livewire\Video\EditVideo;
 use App\Http\Livewire\WatchVideo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
